@@ -19,4 +19,15 @@ public class ItemServiceImpl implements ItemService {
 		List<Items> list = this.itemsMapper.selectByExample(null);
 		return list;
 	}
+
+	@Override
+	public Items queryItemById(Integer id) {
+		Items list = this.itemsMapper.selectByPrimaryKey(id);
+		return list;
+	}
+
+	@Override
+	public void updateItemById(Items items) {
+		 this.itemsMapper.updateByPrimaryKeySelective(items);
+	}
 }

@@ -13,7 +13,17 @@
 	<context:component-scan base-package="com.zpkj.ly.controller"/>
 	
 	<!-- 注册驱动 -->
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
+	
+	<!-- 配置Conveter转换器  转换工厂 （日期、去掉前后空格）。。 -->
+    <bean id="conversionServiceFactoryBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    	<!-- 配置 多个转换器-->
+    	<property name="converters">
+    		<list>
+    			<bean class="com.zpkj.ly.base.DateConverter"/>
+    		</list>
+    	</property>
+    </bean>
 	
 	<!-- 配置视图解析器 -->
 	<!-- Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> 
