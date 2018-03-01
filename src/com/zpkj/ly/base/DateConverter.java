@@ -16,15 +16,15 @@ import org.springframework.core.convert.converter.Converter;
 public class DateConverter implements Converter<String, Date>{
 
 	public Date convert(String source) {
-		// TODO Auto-generated method stub
 		try {
 			if(null != source){//2016:11-05 11_43-50
-				DateFormat df = new SimpleDateFormat("yyyy:MM-dd HH_mm-ss");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				return df.parse(source);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
+		//如果转化异常则返回空
 		return null;
 	}
 

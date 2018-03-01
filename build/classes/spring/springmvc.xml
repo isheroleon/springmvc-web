@@ -12,6 +12,11 @@
 	<!-- 配置controller 扫描包  -->
 	<context:component-scan base-package="com.zpkj.ly.controller"/>
 	
+	 <!-- 处理器映射器 -->
+<!--         <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->
+     <!-- 处理器适配器 -->
+<!--         <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
+	
 	<!-- 注册驱动 -->
 	<mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
 	
@@ -24,6 +29,41 @@
     		</list>
     	</property>
     </bean>
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+    	<!-- <mvc:interceptor>
+    		所有的请求都进入拦截器
+    		<mvc:mapping path="/**" />
+			配置具体的拦截器
+			<bean class="com.zpkj.ly.interceptor.MyHandlerInterceptor" />
+    	</mvc:interceptor>
+    	<mvc:interceptor>
+    		所有的请求都进入拦截器
+    		<mvc:mapping path="/**" />
+			配置具体的拦截器
+			<bean class="com.zpkj.ly.interceptor.MyHandlerInterceptor2" />
+    	</mvc:interceptor> -->
+    	<mvc:interceptor>
+			<!-- 配置商品被拦截器拦截 -->
+		<mvc:mapping path="/test/**" />
+			<!-- 配置具体的拦截器 -->
+			<bean class="com.zpkj.ly.interceptor.LoginHandlerInterceptor" />
+		</mvc:interceptor>
+    	
+    </mvc:interceptors>
+    
+    <!-- 配置全局异常处理器 -->
+	<bean 
+	id="customHandleException" 	class="com.zpkj.ly.expection.CustomHandleException"/>
+	
+	<!-- 文件上传,id必须设置为multipartResolver -->
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- 设定默认编码 -->
+    <property name="defaultEncoding" value="UTF-8"></property>
+    <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+    <property name="maxUploadSize" value="5242880"></property>
+	</bean>
 	
 	<!-- 配置视图解析器 -->
 	<!-- Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> 

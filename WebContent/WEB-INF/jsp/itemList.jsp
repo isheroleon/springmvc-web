@@ -21,6 +21,7 @@
 商品列表：
 <table width="100%" border=1>
 <tr>
+	<td>选择</td>
 	<td>商品名称</td>
 	<td>商品价格</td>
 	<td>生产日期</td>
@@ -29,6 +30,7 @@
 </tr>
 <c:forEach items="${itemList }" var="item">
 <tr>
+	<td><input type="checkbox" name="ids" value="${item.id}"/></td>
 	<td>${item.name }</td>
 	<td>${item.price }</td>
 	<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
