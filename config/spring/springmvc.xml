@@ -65,6 +65,11 @@
     <property name="maxUploadSize" value="5242880"></property>
 	</bean>
 	
+	<!-- 对静态资源放行  -->
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+	
 	<!-- 配置视图解析器 -->
 	<!-- Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> 
 		"/WEB-INF/jsp/test.jsp" -->
